@@ -104,7 +104,7 @@ ROOT_URLCONF = 'inquiryweb.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-	'/home/occam98/webapps/django/inquiryweb/mytemplates'
+	'/home/bvancil/Documents/fyrirspurnfoss/inquiryweb/mytemplates'
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
@@ -116,7 +116,8 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'inquiryweb.inquiry',
+    'inquiry',
+		'tagging',
     # Uncomment the next line to enable the admin:
      'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
