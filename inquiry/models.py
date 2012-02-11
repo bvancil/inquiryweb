@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-import tagging
+import tagging 
+from django.forms import ModelForm
 
 EVENT_CHOICES = (
 ('Q', 'Question'),
@@ -22,3 +23,7 @@ class Event (models.Model):
 
 tagging.register(Event)
         
+class EventForm(ModelForm)
+     class Meta:
+         model = Event 
+    

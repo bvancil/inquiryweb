@@ -1,4 +1,4 @@
-from inquiry.models import Event
+from models import Event
 from django.contrib import admin
 
 class EventAdmin(admin.ModelAdmin):
@@ -8,6 +8,9 @@ class EventAdmin(admin.ModelAdmin):
         ('Inquiry Event', {'fields': ['event_type', 'description'] } ),
         ]
     def save_model(self, request, obj, form, change):
+        # The following is a hack started in models.py that sets
+        # the author field to none so that it can be set here to
+        # the current user.
         if getattr(obj, 'author', None) is None:
             obj.author = request.user
         obj.save()
