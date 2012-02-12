@@ -12,6 +12,12 @@ MANAGERS = ADMINS
 
 from localwebsettings import *
 
+import os
+
+# Current base path used for constructing various directories within the project
+base_dir = os.path.dirname(os.path.realpath(__file__))
+base_url = 'http://localhost:8000/'
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -37,22 +43,24 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(base_dir, 'upload')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = base_url + 'upload/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/home/occam98/webapps/django/inquiryweb'
+STATIC_ROOT = os.path.join(base_dir, 'static')
+STATIC_ADMIN_ROOT = os.path.join(base_dir, 'static/admin')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = 'http://occam98.webfactional.com/static/'
+#STATIC_URL = 'http://occam98.webfactional.com/static/'
+STATIC_URL = base_url + 'static/'
 
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
@@ -64,6 +72,8 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    #os.path.join(base_dir, 'static')
+    os.path.join(base_dir, 'static/admin')
 )
 
 # List of finder classes that know how to find static files in
@@ -76,6 +86,8 @@ STATICFILES_FINDERS = (
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'hmy(#dxl!^tqjywa6h92k6av^u_hzm&27l429!he^@7tuu(u@2'
+
+TEMPLATE_DEBUG = True
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -96,7 +108,7 @@ ROOT_URLCONF = 'inquiryweb.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-	'/home/bvancil/Documents/fyrirspurnfoss/inquiryweb/mytemplates'
+    os.path.join(base_dir, 'mytemplates')
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
@@ -107,16 +119,14 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    #'django.contrib.staticfiles',
     'inquiry',
-		'tagging',
+    'tagging',
+    'bootstrapped',
     # Uncomment the next line to enable the admin:
-     'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
-	'bootstrapped',
-    'tagging',
-
 )
 
 # A sample logging configuration. The only tangible logging
