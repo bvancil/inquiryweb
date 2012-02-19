@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/nested.css" type="text/css">
+{% endblock %}
+{% block title %}InquiryWeb {{ event }}{% endblock %}
+{% block content %}
+<section id="foss">
+<script src="{{ STATIC_URL }}js/inquiryevent.js" type="text/javascript"></script>
+<script type="text/javascript">
+var event = {{ event.json|safe }}[0];
+var children = {{ event.references_json|safe }};
+</script>
+<p>{{ event }}</p>
+<p>
+<script type="text/javascript">
+document.write(inquiry_event_html(event));
+write_child_list(event);
+</script>
+</p>
+</section>
+{% endblock %}
