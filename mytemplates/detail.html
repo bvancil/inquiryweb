@@ -11,12 +11,10 @@
 var event = {{ event.json|safe }}[0];
 var children = {{ event.references_json|safe }};
 </script>
-<p>{{ event }}</p>
-<p>
+<!--rest of document-->
 <script type="text/javascript">
 document.write(inquiry_event_html(event));
 write_child_list(event);
 </script>
-</p>
 </section>
 {% endblock %}

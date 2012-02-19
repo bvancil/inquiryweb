@@ -60,8 +60,8 @@ STATIC_ADMIN_ROOT = os.path.join(base_dir, 'static/admin')
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
 #STATIC_URL = 'http://occam98.webfactional.com/static/'
-#STATIC_URL = base_url + 'static/'
-STATIC_URL = '/static/'
+#STATIC_URL = base_url +  'static/'
+STATIC_URL = '/static/' # for some dev server hacks, turns out we want a relative URL
 
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
@@ -69,13 +69,13 @@ STATIC_URL = '/static/'
 ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Additional locations of static files
-STATICFILES_DIRS = (
+STATICFILES_DIRS = ( 
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    #os.path.join(base_dir, 'static')
     os.path.join(base_dir, 'static/admin'),
     os.path.join(base_dir, 'inquiry/static'),
+    os.path.join(base_dir, 'bootstrapped/static'),
 )
 
 # List of finder classes that know how to find static files in
