@@ -1,22 +1,23 @@
+{% extends "base.html" %}
 {% load bootstrap %}
 {% bootstrap_css %}
 {% bootstrap_js all %}
 
-
-<h1>Welcome to Inquiryweb now</h1>
-<div class="row">
-<div class="span4">
-</div>
-<div class="span8">
-
+{% block head %}
+{% endblock %}
+{% block title %}questions{% endblock %}
+{% block content %}
+<h1>Welcome to Inquiryfoss</h1>
+<h2>Questions</h2>
+<section id="questionlist">
 {% if latest_question_list %}
 <ul>
 {% for Event in latest_question_list %}
-	<li>{{Event.description}}</li> 
+	<li><a href="/inquiry/event/{{Event.pk}}">{{Event.description}}</a></li> 
 {% endfor %}       
 </ul>
 {% else %}
 <p>No questions are available</p>			
 {% endif %}
-</div>	
-</div>
+</section>
+{% endblock %}

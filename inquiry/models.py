@@ -4,6 +4,9 @@ from django.forms import ModelForm
 from django.core import serializers
 import tagging 
 
+from django.forms import ModelForm, Textarea
+
+
 EVENT_CHOICES = (
     ('Q', 'Question'),
     ('P', 'Prediction'),
@@ -42,4 +45,6 @@ tagging.register(Event)
         
 class EventForm(ModelForm):
      class Meta:
-         model = Event 
+         model = Event
+         widgets = {'description': Textarea(attrs={'cols':50, 'rows':5,'placeholder':"I agree/disagree with ____________ because _____________."})}
+         exclude = ('author')

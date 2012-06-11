@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block head %}
+{% endblock %}
+{% block title %}new event{% endblock %}
+{% block content %}
+<section id="formsection">
+<h1>New Event</h1>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<form action="/inquiry/event/new" method="post" id="responseform">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Long live the Scientific Method." />
+</form>
+</section>
+{% endblock %}

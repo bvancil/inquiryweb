@@ -17,4 +17,6 @@ urlpatterns = patterns('inquiry.views',
     url(r'^event/(?P<event_id>\d+)/(?P<format>\w+)/$', 'xhr_detail'),  
     url(r'^event/(?P<event_id>\d+)/updates/(?P<base_timestamp>\d\d\d\d-\d\d-\d\dT\d\d:\d\d)/(?P<format>\w+)/$', 'xhr_last_updated'),
     url(r'^event/all/(?P<format>\w+)/$', 'xhr_all'),
+    url(r'^author/(?P<author_id>\d+)$', 'author_name'),
+                      
 )

@@ -3,7 +3,7 @@
 {% block head %}
 <link rel="stylesheet" href="{{ STATIC_URL }}css/nested.css" type="text/css">
 {% endblock %}
-{% block title %}InquiryWeb {{ event }}{% endblock %}
+{% block title %}{{ event }}{% endblock %}
 {% block content %}
 <section id="foss">
 <script src="{{ STATIC_URL }}js/inquiryevent.js" type="text/javascript"></script>
@@ -16,5 +16,34 @@ var children = {{ event.references_json|safe }};
 document.write(inquiry_event_html(event));
 write_child_list(event);
 </script>
+</section>
+<section id="formsection">
+<h1>Response Form</h1>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<form action="/inquiry/event/new" method="post" id="responseform">
+{% csrf_token %}
+<input type="hidden" name="eventreferant" value="{{ event.pk }}"/>
+<div>
+<label for="eventtype">I have a </label>
+<select name="eventtype" required="required">
+  <option value="Q">Question</option>
+  <option value="P">Prediction</option>
+  <option value="O">Observation</option>
+  <option value="E">Explanation</option>
+  <option value="M">Model</option>
+</select>
+ <label for="eventdescription">and here it is:</label>
+</div>
+<div>
+<textarea name="eventdescription" required="required" rows="5" cols="50" placeholder="I agree/disagree with ____________ because _____________."></textarea>
+</div>
+<div>
+<label for="eventtags">Tags:</label>
+<input type="text" name="eventtags" placeholder="Separate tags with commas"/>
+</div>
+<div>
+<input type="submit" value="Long live the Scientific Method." />
+</div>
+</form>
 </section>
 {% endblock %}

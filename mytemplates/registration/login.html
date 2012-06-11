@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% load bootstrap %}
+{% bootstrap_css %}
+{% bootstrap_js all %}
+
+{% block head %}
+{% endblock %}
+{% block title %}Inquiryfoss login{% endblock %}
+{% block content %}
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+<h1>Login</h1>
+<section id="login">
+
+<form action="{% url 'django.contrib.auth.views.login' %}" method="post" id="loginform">
+{% csrf_token %}
+<input type="hidden" name="next" value="{{ next }}" />
+<table>
+<tr>
+    <td>{{ form.username.label_tag }}</td>
+    <td>{{ form.username }}</td>
+</tr>
+<tr>
+    <td>{{ form.password.label_tag }}</td>
+    <td>{{ form.password }}</td>
+</tr>
+</table>
+<input type="submit" value="Login" />
+</form>
+</section>
+{% endblock %}
