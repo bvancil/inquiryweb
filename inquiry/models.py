@@ -5,7 +5,7 @@ from django.core import serializers
 import tagging 
 
 from django.forms import ModelForm, Textarea
-
+from itertools import chain # for combining query results
 
 EVENT_CHOICES = (
     ('Q', 'Question'),
@@ -39,7 +39,12 @@ class Event (models.Model):
         "Return all inquiry events for which the given event is a referant."
         return Event.objects.filter(referants__id=self.id)
     def get_descendents_later_than(self, timestamp):
-        return self.references().filter(mod_datetime__gt=timestamp)
+        #return self.references().filter(mod_datetime__gt=timestamp) # not recursive
+        refs = self.references()
+        resultset = set(refs.filter(mod_datetime__gt=timestamp))
+        for ev in refs:
+            resultset = resultset.union(set(ev.get_descendents_later_than(timestamp)))
+        return resultset
 
 tagging.register(Event)
         

@@ -16,6 +16,9 @@ background-color: #002366; /* royal blue */
 width: 20em;
 padding: 0.2em 0.8em;
 margin: 0.1em 0em;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
 }
 
 .eventmeat {

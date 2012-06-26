@@ -1,9 +1,13 @@
-h1, h2, h3, h4, h5, h6 {
-font-family:Herculanum, Anaktoria, Candara, sans-serif;
-color: #CC5500; /* burnt orange */
+body { 
+background: #000000; /* black */
 }
 * { 
 font-family:"Gentium Basic", Optima, Cochin, Cambria, serif;
+color: #FFFFFF; /* white */
+}
+h1, h2, h3, h4, h5, h6 {
+font-family:Herculanum, Anaktoria, Candara, sans-serif;
+color: #CC5500; /* burnt orange */
 }
 form p * { 
 vertical-align: top;
@@ -11,10 +15,52 @@ vertical-align: top;
 form p span { 
 display: inline-block;
 }
-a { 
-color: #002366; /* royal blue */
+a {
+color: #4169E1; /* royal blue (web) */
+}
+a:hover { 
+color: #CC5500; /* burnt orange */
 }
 
-a:hover {
-color: #4169E1; /* royal blue (web) */
+form {
+background: -webkit-gradient(linear, bottom, left 175px, from(#002366), to(#000000));
+background: -moz-linear-gradient(bottom, #002366, #000000 175px);
+margin:auto;
+position:relative;
+width:90%;
+/* height:450px; */
+font-style: italic;
+line-height: 24px;
+text-decoration: none;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+padding:10px;
+border: 1px solid #C0C0C0;
+border: inset 1px solid #000000;
+-webkit-box-shadow: 0px 0px 8px rgba(0.752941176470588, 0.752941176470588, 0.752941176470588, 0.3);
+-moz-box-shadow: 0px 0px 8px rgba(0.752941176470588, 0.752941176470588, 0.752941176470588, 0.3);
+box-shadow: 0px 0px 8px rgba(0.752941176470588, 0.752941176470588, 0.752941176470588, 0.3);
+}
+
+input, textarea, select { 
+background: black;
+border: 1px solid #C0C0C0;
+-webkit-box-shadow: 0px 0px 8px rgba(0.752941176470588, 0.752941176470588, 0.752941176470588, 0.3);
+-moz-box-shadow: 0px 0px 8px rgba(0.752941176470588, 0.752941176470588, 0.752941176470588, 0.3);
+box-shadow: 0px 0px 8px rgba(0.752941176470588, 0.752941176470588, 0.752941176470588, 0.3);
+}
+
+input.button {
+background: #CC5500;
+color: #FFF;
+font-family: Herculanum, Anaktoria, Candara, sans-serif;
+height: 30px;
+-webkit-border-radius: 15px;
+-moz-border-radius: 15px;
+border-radius: 15px;
+}
+input.button:hover {
+background:#FFF;
+color: #CC5500;
 }

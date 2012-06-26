@@ -5,44 +5,77 @@
 {% endblock %}
 {% block title %}{{ event }}{% endblock %}
 {% block content %}
-<section id="foss">
-<script src="{{ STATIC_URL }}js/inquiryevent.js" type="text/javascript"></script>
+<section id="fosssection">
 <script type="text/javascript">
 var event = {{ event.json|safe }}[0];
-var children = {{ event.references_json|safe }};
 </script>
-<!--rest of document-->
-<script type="text/javascript">
-document.write(inquiry_event_html(event));
-write_child_list(event);
-</script>
+<script src="{{ STATIC_URL }}js/inquiryevent.js" type="text/javascript"></script>
+<div id="foss">
+This will be replaced by the InquiryFoss.
+</div>
+<h2>Call</h2>
+<div id="test1">
+This is where the call URL will go.
+</div>
+<h2>Response</h2>
+<code id="test2">
+This is where the AJAX response will go.
+</code>
 </section>
 <section id="formsection">
 <h1>Response Form</h1>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 <form action="/inquiry/event/new" method="post" id="responseform">
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#eventtype").change(function(){
+    var et = $("#eventtype").val();
+    var stem;
+    switch($("#eventtype").val()) {
+    case "Q":
+      stem = "How does __________ affect _____________?";
+      break;
+    case "P":
+      stem = "When we __________, the __________ will _________ because _________.";
+      break;
+    case "O":
+      stem = "When we __________, I notice that ____________.";
+      break;
+    case "E":
+      stem = "Assuming that we can apply the ______ Model, ________ because ________.";
+      break;
+    case "M":
+      stem = "The system of interest is ________, which contains the objects _____________.<br/>The interactions of interest are ___________.<br/>The system changes over time ______________.";
+      break;
+    default:
+      stem = "I agree/disagree with ____________ because _____________.";
+    }
+    $("#eventdescription").attr("placeholder", stem);
+  });
+});
+</script>
 {% csrf_token %}
 <input type="hidden" name="eventreferant" value="{{ event.pk }}"/>
 <div>
 <label for="eventtype">I have a </label>
-<select name="eventtype" required="required">
+<select name="eventtype" required="required" id="eventtype">
   <option value="Q">Question</option>
   <option value="P">Prediction</option>
   <option value="O">Observation</option>
   <option value="E">Explanation</option>
   <option value="M">Model</option>
 </select>
- <label for="eventdescription">and here it is:</label>
+ <label for="eventdescription">, and here it is:</label>
 </div>
 <div>
-<textarea name="eventdescription" required="required" rows="5" cols="50" placeholder="I agree/disagree with ____________ because _____________."></textarea>
+<textarea name="eventdescription" required="required" rows="5" cols="50" id="eventdescription" placeholder="How does __________ affect _____________?"></textarea>
 </div>
 <div>
 <label for="eventtags">Tags:</label>
 <input type="text" name="eventtags" placeholder="Separate tags with commas"/>
 </div>
 <div>
-<input type="submit" value="Long live the Scientific Method." />
+<input type="submit" class="button" value="Long live the Scientific Method!" />
 </div>
 </form>
 </section>

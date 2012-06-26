@@ -10,15 +10,18 @@
 <title>Inquiryfoss {% block title %}{% endblock %}</title>
 </head>
 <body>
+<script src="{{ STATIC_URL }}/js/jquery.js"></script>
 <section id="header">
-
 </section>
 <section id="nav">
 
 </section>
 {% block content %}{% endblock %}
 <section id="footer">
-
+{% block footer %}
+<hr/>
+<p><a href="/inquiry/logout">logout</a></p>
+{% endblock %}
 </section>
 </body>
 </html>

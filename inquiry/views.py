@@ -5,7 +5,7 @@ from django.template import Context, loader, RequestContext
 from django.utils import simplejson
 from django.core import serializers
 from django.conf import settings
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 import datetime
@@ -118,3 +118,6 @@ def author_name(request, author_id):
     #return render_to_response('author.txt',{'author': name},context_instance=RequestContext(request))
     return HttpResponse(name)
 
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')
