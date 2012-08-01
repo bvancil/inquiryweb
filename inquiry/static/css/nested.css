@@ -9,6 +9,10 @@ padding: 0em 1em;
 margin: 0em 0em;
 }
 
+.inquirythread { 
+display: block;
+}
+
 .inquiryevent { 
 display: block;
 color: #FFF; 

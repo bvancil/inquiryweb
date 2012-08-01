@@ -1,0 +1,1 @@
+/usr/bin/hg clone https://bitbucket.org/ajordens/django-registration

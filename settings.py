@@ -117,6 +117,7 @@ TEMPLATE_DIRS = (
 
 INSTALLED_APPS = (
     'django.contrib.auth',
+    'django.contrib.humanize',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
@@ -125,6 +126,7 @@ INSTALLED_APPS = (
     'inquiry',
     'tagging',
     'bootstrapped',
+    'registration',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -155,9 +157,13 @@ LOGGING = {
 }
 
 #fix this to enable email.
-#EMAIL_HOST = 'smtp.webfaction.com'
-#EMAIL_HOST_USER = 'occam98'
-#EMAIL_HOST_PASSWORD = 'mailbox_password'
-#DEFAULT_FROM_EMAIL = 'valid_email_address'
-#SERVER_EMAIL = 'valid_email_address'
+ACCOUNT_ACTIVATION_DAYS = 7 # Time to respond to activation e-mail
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+DEFAULT_FROM_EMAIL = 'fyrirspurnfoss@localhost'
+SERVER_EMAIL = 'fyrirspurnfoss@localhost'
+EMAIL_USE_TLS = False
+
 
