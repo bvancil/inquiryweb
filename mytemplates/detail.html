@@ -22,7 +22,7 @@ This is where the call URL will go.
 This is where the AJAX response will go.
 </code>
 </section>
-<section id="formsection">
+<div class="overlay" id="responseoverlay">
 <h1>Response Form</h1>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 <form action="/inquiry/event/new" method="post" id="responseform">
@@ -78,5 +78,24 @@ $(document).ready(function(){
 <input type="submit" class="button" value="Long live the Scientific Method!" />
 </div>
 </form>
-</section>
+</div>
+
+<div class="overlay" id="taggingoverlay">
+<h1>Tagging Form</h1>
+<form action="/inquiry/event/????????/tag" method="post" id="taggingform">
+<script type="text/javascript">
+$(document).ready(function(){
+
+});
+</script>
+{% csrf_token %}
+<div>
+<label for="eventtags">Tags: </label>
+<input type="text" name="eventtags" id="eventtags" placeholder="Separate tags with commas."/>
+</div>
+<div>
+<input type="submit" class="button" value="Long live the Scientific Method!" />
+</div>
+</form>
+</div>
 {% endblock %}

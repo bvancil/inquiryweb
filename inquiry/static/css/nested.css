@@ -65,3 +65,25 @@ color: #C0C0C0; /* silver */
 a:hover {
 color: #FFFFC0; /* light yellow */
 }
+
+.overlay { 
+display:none; /* initially invisible */
+z-index:10000; /* place on top */
+background-color:#222;
+width:100%;
+min-height:200px;
+border: 1px solid #444;
+/* CSS3 */
+-moz-box-shadow:0 0 90px 5px #000;
+-webkit-box-shadow: 0 0 90px #000;
+}
+
+.overlay .closebutton {  /* not used */
+background-image:url({{ STATIC_URL }}images/x_button_blue.png);
+position:absolute;
+right:-15px;
+top:-15px;
+cursor:pointer;
+height:33px;
+width:35px;
+}

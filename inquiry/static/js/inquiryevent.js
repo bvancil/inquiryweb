@@ -32,7 +32,7 @@ InquiryEvent.prototype.referants_links = function() {
     return html;
 };
 InquiryEvent.prototype.html = function() {
-    return '<div class="inquirythread" id="thread' + this.pk + '"><div class="inquiryevent" id="event' + this.pk + '"><a class="eventmeat" href="/inquiry/event/' + this.pk + '"><span class="eventtype">' + this.event_type + '.&nbsp;</span><span class="eventdescription">' + this.description + '</span></a><div class="eventmeta">by ' + '<a class="eventauthor" href="/inquiry/author/' + this.author + '" title="' + this.author + '">' + this.authorName + '</a> (last modified on ' + this.mod_datetime + ' in response to ' + this.referants_links() + ') <span class="eventchoices"><a href="">Respond</a> <a href="">Tag</a></span></div></div><ol class="referants" id="referants' + this.pk + '"></ol></div>';
+    return '<div class="inquirythread" id="thread' + this.pk + '"><div class="inquiryevent" id="event' + this.pk + '"><a class="eventmeat" href="/inquiry/event/' + this.pk + '"><span class="eventtype">' + this.event_type + '.&nbsp;</span><span class="eventdescription">' + this.description + '</span></a><div class="eventmeta">by ' + '<a class="eventauthor" href="/inquiry/author/' + this.author + '" title="' + this.author + '">' + this.authorName + '</a> (last modified on ' + this.mod_datetime + ' in response to ' + this.referants_links() + ') <div class="eventchoices"><a href="#" rel="#responseoverlay">Respond</a> <a href="#" rel="#taggingoverlay">Tag</a></div></div></div><ol class="referants" id="referants' + this.pk + '"></ol></div>';
 };
 
 function formatDate(date, fmt) {
@@ -157,6 +157,7 @@ function refresh_page() {
 	},
     });
     replace_author_ids_with_names();
+    setup_overlays();
 }
 
 function event_timestamp(js_timestamp) {
@@ -176,6 +177,18 @@ function replace_author_ids_with_names() {
     }
 }
 
+function setup_overlays() {
+    $("a[rel]").overlay({
+	mask: {
+	    opacity: 0.2,
+	},
+	closeOnClick: true,
+	closeOnEsc: true,
+	effect: 'default',
+	bottom: '0%',
+    });
+}
+
 // Stuff to run immediately:
 var LastUpdated = Event["fields"]["add_datetime"];
 var EventObj = new InquiryEvent(Event);
@@ -191,6 +204,7 @@ $(document).ready(function() {
     $.ajaxSetup({cache: false});
     replace_author_ids_with_names();
     $("#thread"+EventId).show();
+    setup_overlays();
 });
 
 
